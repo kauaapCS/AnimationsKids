@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Animations Kids</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-theme"> 
+    <div class="fixed-background">
+        <div class="sun-moon">☀️</div>
+        <div class="cloud c1">☁️</div>
+        <div class="cloud c2">☁️</div>
+        <div class="hill-back"></div>
+        <div class="hill-front"></div>
+    </div>
+
+    <main class="main-container">
+        
+        <section id="welcome" class="screen active">
+            <div class="glass-card">
+                <span class="main-emoji">😊</span>
+                <h1>Olá! Vamos brincar?</h1>
+                
+                <div class="theme-selector">
+                    <p>Escolha como prefere ver a tela:</p>
+                    <div class="toggle-container">
+                        <button class="theme-btn light" onclick="setTheme('light')">☀️ Modo Claro</button>
+                        <button class="theme-btn dark" onclick="setTheme('dark')">🌙 Modo Escuro</button>
+                    </div>
+                </div>
+
+                <button class="btn-primary" onclick="showScreen('animations-menu')">ENTRAR</button>
+            </div>
+        </section>
+
+        <section id="animations-menu" class="screen">
+            <header class="top-nav">
+                <nav class="nav-links">
+                    <a href="#" onclick="showScreen('welcome')">INÍCIO</a>
+                    <a href="#" class="active">JOGOS</a>
+                </nav>
+                <div class="nav-icons">
+                    <button onclick="setTheme('light')" class="icon-btn">☀️</button>
+                    <button onclick="setTheme('dark')" class="icon-btn">🌙</button>
+                </div>
+            </header>
+
+            <div class="menu-content-wrapper">
+                <h1 class="multicolor-title">
+                    <span style="color: #FF6B6B">A</span><span style="color: #FFA07A">n</span><span style="color: #FFD700">i</span><span style="color: #4CAF50">m</span><span style="color: #4A90E2">a</span><span style="color: #9B59B6">t</span><span style="color: #FF69B4">i</span><span style="color: #FF6B6B">o</span><span style="color: #FFA07A">n</span><span style="color: #FFD700">s</span>
+                    <span style="color: #4A90E2">K</span><span style="color: #4CAF50">i</span><span style="color: #FFD700">d</span><span style="color: #FF6B6B">s</span>
+                </h1>
+                <h2 class="menu-subtitle">O que vamos jogar hoje?</h2>
+                
+                <div class="games-grid-new">
+                    <button class="game-card bg-blue" onclick="loadGameDetails('cobrinha')">
+                        <span class="game-icon">🐍</span>
+                        <span class="game-text">COBRINHA</span>
+                    </button>
+                    
+                    <button class="game-card bg-green" onclick="loadGameDetails('velha')">
+                        <span class="game-icon">❌⭕</span>
+                        <span class="game-text">JOGO DA VELHA</span>
+                    </button>
+
+                    <button class="game-card bg-purple" onclick="loadGameDetails('memoria')">
+                        <span class="game-icon">🧠</span>
+                        <span class="game-text">MEMÓRIA</span>
+                    </button>
+
+                    <button class="game-card bg-pink" onclick="loadGameDetails('empilhar')">
+                        <span class="game-icon">🧱</span>
+                        <span class="game-text">EMPILHAR</span>
+                    </button>
+
+                    <button class="game-card bg-orange" onclick="loadGameDetails('dado')">
+                        <span class="game-icon">🎲</span>
+                        <span class="game-text">DADO</span>
+                    </button>
+
+                    <button class="game-card bg-grey" onclick="loadGameDetails('placar')">
+                        <div class="score-icon">
+                            <span class="score-title">SCORE:</span>
+                            <span class="score-numbers" id="score-global-preview">0 | 0</span>
+                        </div>
+                        <span class="game-text">PLACAR</span>
+                    </button>
+                </div>
+
+                <div class="bottom-controls">
+                    <div class="pagination">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <button class="hamburger-menu">☰</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="game-details" class="screen">
+            <button class="btn-back" onclick="showScreen('animations-menu')">⬅ VOLTAR</button>
+
+            <header class="top-nav header-details">
+                <nav class="nav-links">
+                    <a href="#" onclick="showScreen('welcome')">INÍCIO</a>
+                    <a href="#" class="active">JOGOS</a>
+                </nav>
+                <div class="nav-icons">
+                    <button onclick="setTheme('light')" class="icon-btn">☀️</button>
+                    <button onclick="setTheme('dark')" class="icon-btn">🌙</button>
+                </div>
+            </header>
+
+            <div class="details-content-wrapper">
+                <div class="game-desc-container" id="details-card">
+                    <div class="desc-header">
+                        <span class="desc-icon" id="details-icon">🎮</span>
+                        <h1 class="desc-title" id="details-title">Nome do Jogo</h1>
+                    </div>
+                    
+                    <div class="desc-body">
+                        <p id="details-text">A descrição do jogo aparecerá aqui.</p>
+                    </div>
+
+                    <div class="audio-player-container">
+                        <span class="audio-prompt">Ouça a explicação:</span>
+                        <audio id="details-audio" controls>
+                            <source id="details-audio-source" src="audio/Jogo da Memoria.mp3" type="audio/mpeg">
+                            Seu navegador não suporta áudio HTML5.
+                        </audio>
+                    </div>
+
+                    <div class="action-container">
+                        <button id="btn-play-game" class="btn-play">▶ JOGAR</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="play-pong" class="screen">
+            <button class="btn-back" onclick="pararJogoEVoltar()">⬅ VOLTAR</button>
+            <div class="glass-card game-box-layout">
+                <h2>🐍 Jogo da Cobrinha</h2>
+                <p id="cobrinha-status" class="game-instruction">Use as SETAS do teclado para guiar!</p>
+                <div id="tabuleiro-cobrinha" class="grid-cobrinha"></div>
+                <button id="btn-reset-cobrinha" class="btn-reset" style="display:none;" onclick="startCobrinha()">Recomeçar</button>
+            </div>
+        </section>
+
+        <section id="play-velha" class="screen">
+            <button class="btn-back" onclick="pararJogoEVoltar()">⬅ VOLTAR</button>
+            <div class="glass-card game-box-layout">
+                <h2>❌⭕ Jogo da Velha</h2>
+                <p id="velha-status" class="game-instruction">Vez do jogador X</p>
+                <div id="tabuleiro-velha" class="grid-velha"></div>
+                <button class="btn-reset" onclick="startVelha()">Recomeçar</button>
+            </div>
+        </section>
+
+        <section id="play-memoria" class="screen">
+            <button class="btn-back" onclick="pararJogoEVoltar()">⬅ VOLTAR</button>
+            <div class="glass-card game-box-layout">
+                <h2>🧠 Memória Espacial</h2>
+                <p id="memoria-status" class="game-instruction">Encontre os pares espaciais!</p>
+                <div id="tabuleiro-memoria" class="grid-memoria"></div>
+                <button id="btn-reset-memoria" class="btn-reset" style="display:none;" onclick="startMemoria()">Jogar de Novo 🚀</button>
+            </div>
+        </section>
+
+        <section id="play-empilhar" class="screen">
+            <button class="btn-back" onclick="pararJogoEVoltar()">⬅ VOLTAR</button>
+            <div class="glass-card game-box-layout">
+                <h2>🧱 Torre de Blocos</h2>
+                <p id="torre-status" class="game-instruction">Clique abaixo para prender o bloco!</p>
+                <div id="container-torre" class="torre-wrapper"></div>
+                <button id="btn-soltar-bloco" class="btn-primary" style="margin-top:15px; font-size:18px; padding:10px 30px;" onclick="colocarBlocoTorre()">SOLTAR BLOCO</button>
+                <button id="btn-reset-torre" class="btn-reset" style="display:none;" onclick="startTorre()">Recomeçar</button>
+            </div>
+        </section>
+
+        <section id="play-dado" class="screen">
+            <button class="btn-back" onclick="showScreen('game-details')">⬅ VOLTAR</button>
+            <div class="glass-card game-box-layout">
+                <h2>🎲 Rolando o Dado</h2>
+                <div id="dado-box" class="dado-render">?</div>
+                <button class="btn-primary" onclick="rodarDadoVirtual()">GIRAR DADO</button>
+            </div>
+        </section>
+
+        <section id="play-placar" class="screen">
+            <button class="btn-back" onclick="showScreen('game-details')">⬅ VOLTAR</button>
+            <div class="glass-card game-box-layout" style="max-width: 550px; width:95%;">
+                <h2>📊 Placar de Pontos</h2>
+                <div class="placar-container">
+                    <div class="placar-lado">
+                        <h3 style="color: #4A90E2;">Time Azul</h3>
+                        <div class="placar-numero" id="txt-score-azul">0</div>
+                        <div class="placar-botoes">
+                            <button onclick="alterarPlacarLocal('azul', -1)">-</button>
+                            <button onclick="alterarPlacarLocal('azul', 1)" style="background:#4A90E2; color:white;">+</button>
+                        </div>
+                    </div>
+                    <div class="placar-divisor"></div>
+                    <div class="placar-lado">
+                        <h3 style="color: #4CAF50;">Time Verde</h3>
+                        <div class="placar-numero" id="txt-score-verde">0</div>
+                        <div class="placar-botoes">
+                            <button onclick="alterarPlacarLocal('verde', -1)">-</button>
+                            <button onclick="alterarPlacarLocal('verde', 1)" style="background:#4CAF50; color:white;">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
